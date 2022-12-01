@@ -32,14 +32,17 @@ function initPage() {
     }
 
     const parseData = JSON.parse(saveData)
-    console.log(parseData);
+    // console.log(parseData);
     Object.entries(parseData).forEach(([name, value]) => {
         formRef.elements[name].value = value
     });
 }
-function onFormSubmit() {
+function onFormSubmit(e) {
+    e.preventDefault()
+    
+    console.log(JSON.parse(localStorage.getItem(LOCAL_STORAGE_DATA_KEY)));
+    formRef.reset()
     localStorage.clear()
-    formRef.elements.reset()
 }
 formRef.addEventListener('input', throttle(onFormInput, 500))
 formRef.addEventListener('submit', onFormSubmit)
