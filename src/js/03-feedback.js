@@ -5,8 +5,6 @@ const LOCAL_STORAGE_DATA_KEY = 'feedback-form-state';
 
 initPage()
 
-let formData = {}
-
 function onFormInput(e) {
     const { name, value } = e.target;
     
@@ -21,7 +19,7 @@ function onFormInput(e) {
         const stringifyData = JSON.stringify(saveData)
         localStorage.setItem(LOCAL_STORAGE_DATA_KEY, stringifyData) 
     } catch (error) {
-        
+        console.error(error);
     }
 }
 
@@ -46,3 +44,4 @@ function onFormSubmit(e) {
 }
 formRef.addEventListener('input', throttle(onFormInput, 500))
 formRef.addEventListener('submit', onFormSubmit)
+
